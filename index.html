@@ -1209,7 +1209,8 @@
     /* ---------- countdown ---------- */
     function updateCountdown() {
       const b = CONFIG.birthday;
-      const target = new Date(b.year, b.month - 1, b.day, 0, 0, 0).getTime();
+      // Birthday at midnight IST (India Standard Time, UTC+5:30)
+      const target = Date.UTC(b.year, b.month-1, b.day, 0, 0, 0) - (5.5 * 60 * 60 * 1000);
       const now = Date.now();
       let diff = target - now;
       const wrap = $("countWrap");
